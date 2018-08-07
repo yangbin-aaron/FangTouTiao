@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile  "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
+
+    // 观察者模式 管理lib
+    compile 'org.greenrobot:eventbus:3.0.0'
+    // findViewById 优化的依赖库
+    compile 'com.jakewharton:butterknife:7.0.1'
+    // 轻量级的多状态显示控件 lib
+    compile 'com.github.nukc.stateview:library:1.2.1'
+}
