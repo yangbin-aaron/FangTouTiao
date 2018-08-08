@@ -2,11 +2,76 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <com.aaron.toolsaaron.views.NoScrollViewPager
+        android:id="@+id/vp_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
+    <com.aaron.toolsaaron.viewtools.bottomBar.BottomBarLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/bottombar_bg">
+
+        <com.aaron.toolsaaron.viewtools.bottomBar.BottomBarItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:iconNormal="@drawable/tab_home_normal"
+            app:iconSelected="@drawable/tab_home_selected"
+            app:itemMarginTop="-5dp"
+            app:itemText="首页"
+            app:itemTextSize="8sp"
+            app:openTouchBg="true"
+            app:textColorNormal="@color/color_515051"
+            app:textColorSelected="@color/color_D33D3C"
+            app:touchDrawable="@drawable/selector_bottom_tab" />
+
+        <com.aaron.toolsaaron.viewtools.bottomBar.BottomBarItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:iconNormal="@drawable/tab_video_normal"
+            app:iconSelected="@drawable/tab_video_selected"
+            app:itemMarginTop="-5dp"
+            app:itemText="视频"
+            app:itemTextSize="8sp"
+            app:openTouchBg="true"
+            app:textColorNormal="@color/color_515051"
+            app:textColorSelected="@color/color_D33D3C"
+            app:touchDrawable="@drawable/selector_bottom_tab" />
+
+        <com.aaron.toolsaaron.viewtools.bottomBar.BottomBarItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:iconNormal="@drawable/tab_micro_normal"
+            app:iconSelected="@drawable/tab_micro_selected"
+            app:itemMarginTop="-5dp"
+            app:itemText="微头条"
+            app:itemTextSize="8sp"
+            app:openTouchBg="true"
+            app:textColorNormal="@color/color_515051"
+            app:textColorSelected="@color/color_D33D3C"
+            app:touchDrawable="@drawable/selector_bottom_tab" />
+
+        <com.aaron.toolsaaron.viewtools.bottomBar.BottomBarItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:iconNormal="@drawable/tab_me_normal"
+            app:iconSelected="@drawable/tab_me_selected"
+            app:itemMarginTop="-5dp"
+            app:itemText="我的"
+            app:itemTextSize="8sp"
+            app:openTouchBg="true"
+            app:textColorNormal="@color/color_515051"
+            app:textColorSelected="@color/color_D33D3C"
+            app:touchDrawable="@drawable/selector_bottom_tab" />
+
+    </com.aaron.toolsaaron.viewtools.bottomBar.BottomBarLayout>
 </LinearLayout>

@@ -10,6 +10,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.aaron.toolsaaron.listener.PermissionListener;
+import com.aaron.toolsaaron.views.SlidingLayout;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -42,6 +43,12 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // 默认可以侧滑关闭activity
+        if (enableSlideClose()) {
+            SlidingLayout rootView = new SlidingLayout(this);
+            rootView.bindActivity(this);
+        }
+
         this.savedInstanceState = savedInstanceState;
 
         //初始化的时候将其添加到集合中
@@ -58,6 +65,28 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             setContentView(provideContentViewId());
             ButterKnife.bind(this);
         }
+
+        initView();
+        initData();
+        initListener();
+    }
+
+    /**
+     * 侧滑是否关闭页面（默认关闭）
+     *
+     * @return
+     */
+    public boolean enableSlideClose() {
+        return true;
+    }
+
+    public void initView() {
+    }
+
+    public void initData() {
+    }
+
+    public void initListener() {
     }
 
     //用于创建Presenter和判断是否使用MVP模式(由子类实现)
@@ -135,7 +164,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     }
 
     /**
-     * 观察者模式
+     * 观察者模式（类似广播）
      *
      * @param subscribe
      * @return
@@ -144,12 +173,21 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         return EventBus.getDefault().isRegistered(subscribe);
     }
 
+    /**
+     * 注册
+     * @param subscribe
+     * @des 注册之后，必须要有接收方法，如MainActivity里面的 onRefreshCompletedEvent
+     */
     public void registerEventBus(Object subscribe) {
         if (!isEventBusRegisted(subscribe)) {
             EventBus.getDefault().register(subscribe);
         }
     }
 
+    /**
+     * 注销
+     * @param subscribe
+     */
     public void unregisterEventBus(Object subscribe) {
         if (isEventBusRegisted(subscribe)) {
             EventBus.getDefault().unregister(subscribe);

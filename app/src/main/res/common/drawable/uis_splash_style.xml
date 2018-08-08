@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--注意：此处的item是一层一层叠加而成的-->
+    <!--设置背景颜色-->
+    <item android:drawable="@color/white" />
+    <!--设置图片-->
+    <item android:bottom="25dp">
+        <bitmap
+            android:gravity="bottom"
+            android:src="@drawable/splash_banner" />
+    </item>
+</layer-list>

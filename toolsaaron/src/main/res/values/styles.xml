@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <!--没有actionbar的Theme-->
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowNoTitle">?android:windowNoTitle</item>
+    </style>
+
+    <!--启动页面-->
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/uis_splash_style</item>
+        <item name="windowNoTitle">?android:windowNoTitle</item>
+        <!-- 设置无标题-->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>
