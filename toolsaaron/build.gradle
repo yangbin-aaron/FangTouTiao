@@ -39,4 +39,8 @@ dependencies {
     compile 'com.github.nukc.stateview:library:1.2.1'
     // gson
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    // 图片加载
+    compile 'com.github.bumptech.glide:glide:4.0.0'
+    // 网络框架
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
 }
