@@ -1,7 +1,7 @@
 package com.aaron.fangtoutiao.uis.fragments;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,6 +15,9 @@ import com.aaron.fangtoutiao.model.entity.NewsRecord;
 import com.aaron.fangtoutiao.model.event.TabRefreshCompletedEvent;
 import com.aaron.fangtoutiao.mvp.presenter.NewsListPresenter;
 import com.aaron.fangtoutiao.mvp.view.lNewsListView;
+import com.aaron.fangtoutiao.uis.activitys.NewsDetailActivity;
+import com.aaron.fangtoutiao.uis.activitys.NewsDetailBaseActivity;
+import com.aaron.fangtoutiao.uis.activitys.WebViewActivity;
 import com.aaron.fangtoutiao.uis.adapter.NewsListAdapter;
 import com.aaron.fangtoutiao.utils.NewsRecordHelper;
 import com.aaron.toolsaaron.recyclerview.BaseQuickAdapter;
@@ -116,7 +119,6 @@ public class NewsListFragment extends BaseFragment<NewsListPresenter> implements
     public void initListener() {
         super.initListener();
         if (isVideoList) {
-            // TODO
             mNewsAdapter = new NewsListAdapter(mChannelCode, mNewsList);
         } else {
             mNewsAdapter = new NewsListAdapter(mChannelCode, mNewsList);
@@ -126,11 +128,48 @@ public class NewsListFragment extends BaseFragment<NewsListPresenter> implements
         mNewsAdapter.setEnableLoadMore(true);
         mNewsAdapter.setOnLoadMoreListener(this, mRvNews);
 
-        mNewsAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+        mNewsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 News news = mNewsList.get(position);
+                String itemId = news.item_id;
+                StringBuffer urlSb = new StringBuffer("http://m.toutiao.com/i");
+                urlSb.append(itemId).append("/info/");
+                String url = urlSb.toString();//http://m.toutiao.com/i6412427713050575361/info/
+                Intent intent = null;
+                intent = new Intent(mActivity, NewsDetailActivity.class);
+                if (news.has_video) {
+                    //视频
+//                    intent = new Intent(mActivity, VideoDetailActivity.class);
+//                    if (JCVideoPlayerManager.getCurrentJcvd() != null) {
+//                        JCVideoPlayerStandard videoPlayer = (JCVideoPlayerStandard) JCVideoPlayerManager.getCurrentJcvd();
+//                        //传递进度
+//                        int progress = JCMediaManager.instance().mediaPlayer.getCurrentPosition();
+//                        if (progress != 0) {
+//                            intent.putExtra(VideoDetailActivity.PROGRESS, progress);
+//                        }
+//                    }
+                } else {
+                    //非视频新闻
+                    if (news.article_type == 1) {
+                        //如果article_type为1，则是使用WebViewActivity打开
+                        intent = new Intent(mActivity, WebViewActivity.class);
+                        intent.putExtra(WebViewActivity.URL, news.article_url);
+                        startActivity(intent);
+                        return;
+                    }
+                    //其他新闻
+                    intent = new Intent(mActivity, NewsDetailActivity.class);
+                }
 
+                intent.putExtra(NewsDetailBaseActivity.CHANNEL_CODE, mChannelCode);
+                intent.putExtra(NewsDetailBaseActivity.POSITION, position);
+
+                intent.putExtra(NewsDetailBaseActivity.DETAIL_URL, url);
+                intent.putExtra(NewsDetailBaseActivity.GROUP_ID, news.group_id);
+                intent.putExtra(NewsDetailBaseActivity.ITEM_ID, itemId);
+
+                startActivity(intent);
             }
         });
 
@@ -290,7 +329,7 @@ public class NewsListFragment extends BaseFragment<NewsListPresenter> implements
 
     @Override
     public void onLoadMoreRequested() {
-// BaseRecyclerViewAdapterHelper的加载更多
+        // BaseRecyclerViewAdapterHelper的加载更多
         if (mNewsRecord.getPage() == 0 || mNewsRecord.getPage() == 1) {
             //如果记录的页数为0(即是创建的空记录)，或者页数为1(即已经是第一条记录了)
             //mRefreshLayout.endLoadingMore();//结束加载更多

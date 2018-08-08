@@ -88,22 +88,22 @@ public class MainActivity extends BaseActivity {
 
 //                JCVideoPlayer.releaseAllVideos();//底部页签切换或者是下拉刷新，释放资源
 
-                if (position == 0 || position == 1) {
-                    //如果点击的是首页和视频（都有下拉刷新）
-                    if (mBottomBarLayout.getCurrentItem() == position) {
-                        //如果当前页码和点击的页码一致,进行下拉刷新
-                        String channelCode = "";
-                        if (position == 0) {
-                            channelCode = ((HomeFragment) mFragments.get(0)).getCurrentChannelCode();//获取到首页当前显示的fragment的频道
-                        } else {
-                            channelCode = ((VideoFragment) mFragments.get(1)).getCurrentChannelCode();//获取到视频当前显示的fragment的频道
-                        }
+//                if (position == 0 || position == 1) {
+//                    //如果点击的是首页和视频（都有下拉刷新）
+//                    if (mBottomBarLayout.getCurrentItem() == position) {
+//                        //如果当前页码和点击的页码一致,进行下拉刷新
+//                        String channelCode = "";
+//                        if (position == 0) {
+//                            channelCode = ((HomeFragment) mFragments.get(0)).getCurrentChannelCode();//获取到首页当前显示的fragment的频道
+//                        } else {
+//                            channelCode = ((VideoFragment) mFragments.get(1)).getCurrentChannelCode();//获取到视频当前显示的fragment的频道
+//                        }
 //                        postTabRefreshEvent(bottomBarItem, position, channelCode);//发送下拉刷新的事件
-                    }
-                    return;
-                }
-
-                // 点击首页的按钮时，如果刷新，图标会变成刷新的加载图标，所以需要换回来
+//                    }
+//                    return;
+//                }
+//
+//                // 点击首页的按钮时，如果刷新，图标会变成刷新的加载图标，所以需要换回来
 //                //如果点击了其他条目
 //                BottomBarItem bottomItem = mBottomBarLayout.getBottomItem(0);
 //                bottomItem.setIconSelectedResourceId(R.drawable.tab_home_selected);//更换为原来的图标

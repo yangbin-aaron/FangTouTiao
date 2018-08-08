@@ -37,10 +37,13 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     // 轻量级的多状态显示控件 lib
     compile 'com.github.nukc.stateview:library:1.2.1'
-    // gson
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    // 图片加载
-    compile 'com.github.bumptech.glide:glide:4.0.0'
     // 网络框架
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    // 图片加载
+    compile 'com.github.bumptech.glide:glide:4.0.0'
+    // ???
+    compile 'io.reactivex:rxandroid:1.2.0'
 }
