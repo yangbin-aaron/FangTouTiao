@@ -8,8 +8,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 
+import com.aaron.toolsaaron.R;
 import com.aaron.toolsaaron.listener.PermissionListener;
+import com.aaron.toolsaaron.utils.UIUtils;
 import com.aaron.toolsaaron.views.SlidingLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -147,15 +150,20 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     // 退出APP时需要的时间
     private static long mPreTime;
 
+    public String getMainAppName() {
+        return null;
+    }
+
     /**
      * 统一退出控制
      */
     @Override
     public void onBackPressed() {
-        if (mCurrentActivity.getPackageName().equals("MainActivity")) {
+        String appName = getMainAppName();
+        if (!TextUtils.isEmpty(appName)) {
             //如果是主页面
             if (System.currentTimeMillis() - mPreTime > 2000) {// 两次点击间隔大于2秒
-//                UIUtils.showToast("再按一次，退出应用");
+                UIUtils.showToast(getString(R.string.exit_app,appName));
                 mPreTime = System.currentTimeMillis();
                 return;
             }
@@ -175,6 +183,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     /**
      * 注册
+     *
      * @param subscribe
      * @des 注册之后，必须要有接收方法，如MainActivity里面的 onRefreshCompletedEvent
      */
@@ -186,6 +195,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     /**
      * 注销
+     *
      * @param subscribe
      */
     public void unregisterEventBus(Object subscribe) {

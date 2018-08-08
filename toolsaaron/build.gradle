@@ -37,4 +37,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     // 轻量级的多状态显示控件 lib
     compile 'com.github.nukc.stateview:library:1.2.1'
+    // gson
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 }

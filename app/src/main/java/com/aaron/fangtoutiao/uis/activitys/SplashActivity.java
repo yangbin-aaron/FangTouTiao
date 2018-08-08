@@ -40,4 +40,9 @@ public class SplashActivity extends BaseActivity {
             }
         }, 2000);
     }
+
+    @Override
+    public void onBackPressed() {
+        // 返回按钮不退出app
+    }
 }

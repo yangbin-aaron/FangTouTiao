@@ -19,11 +19,9 @@ public class NoScrollViewPager extends ViewPager {
 
     /**
      * 设置为true 可以滑动
-     *
-     * @param canScroll
      */
-    public void setCanScroll(boolean canScroll) {
-        mCanScroll = canScroll;
+    public void setCanScroll() {
+        mCanScroll = true;
     }
 
     public NoScrollViewPager(Context context, AttributeSet attrs) {
@@ -46,7 +44,7 @@ public class NoScrollViewPager extends ViewPager {
         //super.onTouchEvent(ev); //不行,
         //虽然onInterceptTouchEvent中拦截了,
         //但是如果viewpage里面子控件不是viewgroup,还是会调用这个方法.
-        if (!mCanScroll) {
+        if (mCanScroll) {
             try {
                 return super.onTouchEvent(arg0);
             } catch (Exception ex) {
@@ -68,7 +66,7 @@ public class NoScrollViewPager extends ViewPager {
         // return false;//可行,不拦截事件,
         // return true;//不行,子控件无法处理事件
         //return super.onInterceptTouchEvent(ev);//不行,会有细微移动
-        if (!mCanScroll) {
+        if (mCanScroll) {
             try {
                 return super.onInterceptTouchEvent(arg0);
             } catch (Exception ex) {

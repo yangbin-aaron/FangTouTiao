@@ -51,10 +51,15 @@ public class MainActivity extends BaseActivity {
 
     // 头部状态栏的背景颜色
     private int[] mStatusColors = new int[]{
-            R.color.color_D33D3C,
+            R.color.colorPrimary,
             R.color.white,
             R.color.white,
     };
+
+    @Override
+    public String getMainAppName() {
+        return getString(R.string.app_name);
+    }
 
     @Override
     public void initData() {
@@ -88,11 +93,11 @@ public class MainActivity extends BaseActivity {
                     if (mBottomBarLayout.getCurrentItem() == position) {
                         //如果当前页码和点击的页码一致,进行下拉刷新
                         String channelCode = "";
-//                        if (position == 0) {
-//                            channelCode = ((HomeFragment) mFragments.get(0)).getCurrentChannelCode();//获取到首页当前显示的fragment的频道
-//                        } else {
-//                            channelCode = ((VideoFragment) mFragments.get(1)).getCurrentChannelCode();//获取到视频当前显示的fragment的频道
-//                        }
+                        if (position == 0) {
+                            channelCode = ((HomeFragment) mFragments.get(0)).getCurrentChannelCode();//获取到首页当前显示的fragment的频道
+                        } else {
+                            channelCode = ((VideoFragment) mFragments.get(1)).getCurrentChannelCode();//获取到视频当前显示的fragment的频道
+                        }
 //                        postTabRefreshEvent(bottomBarItem, position, channelCode);//发送下拉刷新的事件
                     }
                     return;
@@ -136,13 +141,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        registerEventBus(MainActivity.this);
+        registerEventBus(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        unregisterEventBus(MainActivity.this);
+        unregisterEventBus(this);
     }
 
     @Override
