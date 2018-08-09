@@ -78,7 +78,7 @@ public class NewsDetailActivity extends NewsDetailBaseActivity {
         postVideoEvent(false);
     }
 
-    @OnClick({R.id.iv_back, R.id.iv_detail, R.id.tv_edit_comment, R.id.iv_save, R.id.iv_shape})
+    @OnClick({R.id.iv_back, R.id.iv_detail})
     public void onViewClicked(View view) {
         super.onViewClicked(view);
         switch (view.getId()) {
@@ -87,15 +87,6 @@ public class NewsDetailActivity extends NewsDetailBaseActivity {
                 break;
             case R.id.iv_detail:
                 UIUtils.showToast("更多，敬请期待！");
-                break;
-            case R.id.tv_edit_comment:
-                UIUtils.showToast("评论，敬请期待！");
-                break;
-            case R.id.iv_save:
-                UIUtils.showToast("收藏，敬请期待！");
-                break;
-            case R.id.iv_shape:
-                UIUtils.showToast("转发，敬请期待！");
                 break;
         }
     }

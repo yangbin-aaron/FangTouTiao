@@ -18,10 +18,13 @@ import com.aaron.fangtoutiao.mvp.presenter.NewsDetailPresenter;
 import com.aaron.fangtoutiao.mvp.view.INewsDetailView;
 import com.aaron.fangtoutiao.uis.adapter.CommentAdapter;
 import com.aaron.fangtoutiao.uis.view.NewsDetailHeaderView;
+import com.aaron.jcvideoplayer_lib.JCMediaManager;
+import com.aaron.jcvideoplayer_lib.JCVideoPlayerManager;
 import com.aaron.toolsaaron.recyclerview.BaseQuickAdapter;
 import com.aaron.toolsaaron.recyclerview.powerfulrecyclerview.PowerfulRecyclerView;
 import com.aaron.toolsaaron.ui.base.BaseActivity;
 import com.aaron.toolsaaron.utils.ListUtils;
+import com.aaron.toolsaaron.utils.UIUtils;
 import com.github.nukc.stateview.StateView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -164,7 +167,7 @@ public abstract class NewsDetailBaseActivity extends BaseActivity<NewsDetailPres
     }
 
 
-    @OnClick({R.id.fl_comment_icon})
+    @OnClick({R.id.fl_comment_icon, R.id.tv_edit_comment, R.id.iv_save, R.id.iv_shape})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fl_comment_icon:
@@ -182,6 +185,15 @@ public abstract class NewsDetailBaseActivity extends BaseActivity<NewsDetailPres
                         mRvComment.scrollToPosition(0);
                     }
                 }
+                break;
+            case R.id.tv_edit_comment:
+                UIUtils.showToast("评论，敬请期待！");
+                break;
+            case R.id.iv_save:
+                UIUtils.showToast("收藏，敬请期待！");
+                break;
+            case R.id.iv_shape:
+                UIUtils.showToast("转发，敬请期待！");
                 break;
         }
     }
@@ -204,11 +216,11 @@ public abstract class NewsDetailBaseActivity extends BaseActivity<NewsDetailPres
             event.setCommentCount(mCommentResponse.total_number);
         }
 
-//        if (isVideoDetail && JCMediaManager.instance().mediaPlayer != null && JCVideoPlayerManager.getCurrentJcvd() != null){
-//            //如果是视频详情
-//            int progress = JCMediaManager.instance().mediaPlayer.getCurrentPosition();
-//            event.setProgress(progress);
-//        }
+        if (isVideoDetail && JCMediaManager.instance().mediaPlayer != null && JCVideoPlayerManager.getCurrentJcvd() != null) {
+            //如果是视频详情
+            int progress = JCMediaManager.instance().mediaPlayer.getCurrentPosition();
+            event.setProgress(progress);
+        }
 
         EventBus.getDefault().postSticky(event);
         finish();

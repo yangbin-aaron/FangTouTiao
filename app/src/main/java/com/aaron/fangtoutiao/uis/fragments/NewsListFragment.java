@@ -2,6 +2,7 @@ package com.aaron.fangtoutiao.uis.fragments;
 
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,9 +18,15 @@ import com.aaron.fangtoutiao.mvp.presenter.NewsListPresenter;
 import com.aaron.fangtoutiao.mvp.view.lNewsListView;
 import com.aaron.fangtoutiao.uis.activitys.NewsDetailActivity;
 import com.aaron.fangtoutiao.uis.activitys.NewsDetailBaseActivity;
+import com.aaron.fangtoutiao.uis.activitys.VideoDetailActivity;
 import com.aaron.fangtoutiao.uis.activitys.WebViewActivity;
 import com.aaron.fangtoutiao.uis.adapter.NewsListAdapter;
+import com.aaron.fangtoutiao.uis.adapter.VideoListAdapter;
 import com.aaron.fangtoutiao.utils.NewsRecordHelper;
+import com.aaron.jcvideoplayer_lib.JCMediaManager;
+import com.aaron.jcvideoplayer_lib.JCVideoPlayer;
+import com.aaron.jcvideoplayer_lib.JCVideoPlayerManager;
+import com.aaron.jcvideoplayer_lib.JCVideoPlayerStandard;
 import com.aaron.toolsaaron.recyclerview.BaseQuickAdapter;
 import com.aaron.toolsaaron.recyclerview.powerfulrecyclerview.PowerfulRecyclerView;
 import com.aaron.toolsaaron.ui.base.BaseFragment;
@@ -119,7 +126,7 @@ public class NewsListFragment extends BaseFragment<NewsListPresenter> implements
     public void initListener() {
         super.initListener();
         if (isVideoList) {
-            mNewsAdapter = new NewsListAdapter(mChannelCode, mNewsList);
+            mNewsAdapter = new VideoListAdapter(mNewsList);
         } else {
             mNewsAdapter = new NewsListAdapter(mChannelCode, mNewsList);
         }
@@ -137,18 +144,17 @@ public class NewsListFragment extends BaseFragment<NewsListPresenter> implements
                 urlSb.append(itemId).append("/info/");
                 String url = urlSb.toString();//http://m.toutiao.com/i6412427713050575361/info/
                 Intent intent = null;
-                intent = new Intent(mActivity, NewsDetailActivity.class);
                 if (news.has_video) {
                     //视频
-//                    intent = new Intent(mActivity, VideoDetailActivity.class);
-//                    if (JCVideoPlayerManager.getCurrentJcvd() != null) {
-//                        JCVideoPlayerStandard videoPlayer = (JCVideoPlayerStandard) JCVideoPlayerManager.getCurrentJcvd();
-//                        //传递进度
-//                        int progress = JCMediaManager.instance().mediaPlayer.getCurrentPosition();
-//                        if (progress != 0) {
-//                            intent.putExtra(VideoDetailActivity.PROGRESS, progress);
-//                        }
-//                    }
+                    intent = new Intent(mActivity, VideoDetailActivity.class);
+                    if (JCVideoPlayerManager.getCurrentJcvd() != null) {
+                        JCVideoPlayerStandard videoPlayer = (JCVideoPlayerStandard) JCVideoPlayerManager.getCurrentJcvd();
+                        //传递进度
+                        int progress = JCMediaManager.instance().mediaPlayer.getCurrentPosition();
+                        if (progress != 0) {
+                            intent.putExtra(VideoDetailActivity.PROGRESS, progress);
+                        }
+                    }
                 } else {
                     //非视频新闻
                     if (news.article_type == 1) {
@@ -178,21 +184,21 @@ public class NewsListFragment extends BaseFragment<NewsListPresenter> implements
             mRvNews.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//                    if (JCVideoPlayerManager.getCurrentJcvd() != null) {
-//                        JCVideoPlayerStandard videoPlayer = (JCVideoPlayerStandard) JCVideoPlayerManager.getCurrentJcvd();
-//                        if (videoPlayer.currentState == CURRENT_STATE_PLAYING) {
-//                            //如果正在播放
-//                            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRvNews.getLayoutManager();
-//                            int firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
-//                            int lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
-//
-//                            if (firstVisibleItemPosition > videoPlayer.getPosition() || lastVisibleItemPosition < videoPlayer.getPosition()) {
-//                                //如果第一个可见的条目位置大于当前播放videoPlayer的位置
-//                                //或最后一个可见的条目位置小于当前播放videoPlayer的位置，释放资源
-//                                JCVideoPlayer.releaseAllVideos();
-//                            }
-//                        }
-//                    }
+                    if (JCVideoPlayerManager.getCurrentJcvd() != null) {
+                        JCVideoPlayerStandard videoPlayer = (JCVideoPlayerStandard) JCVideoPlayerManager.getCurrentJcvd();
+                        if (videoPlayer.currentState == JCVideoPlayer.CURRENT_STATE_PLAYING) {
+                            //如果正在播放
+                            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRvNews.getLayoutManager();
+                            int firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
+                            int lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
+
+                            if (firstVisibleItemPosition > videoPlayer.getPosition() || lastVisibleItemPosition < videoPlayer.getPosition()) {
+                                //如果第一个可见的条目位置大于当前播放videoPlayer的位置
+                                //或最后一个可见的条目位置小于当前播放videoPlayer的位置，释放资源
+                                JCVideoPlayer.releaseAllVideos();
+                            }
+                        }
+                    }
                 }
             });
         }

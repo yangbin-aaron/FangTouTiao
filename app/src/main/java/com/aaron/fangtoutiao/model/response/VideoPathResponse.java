@@ -4,12 +4,6 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-/**
- * @author ChayChan
- * @description: TODO
- * @date 2017/7/13  22:05
- */
-
 public class VideoPathResponse {
 
 

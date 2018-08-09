@@ -18,6 +18,7 @@ import com.aaron.toolsaaron.ui.base.BasePresenter;
 import com.aaron.toolsaaron.utils.FileUtils;
 import com.aaron.toolsaaron.utils.LogUtil;
 import com.aaron.toolsaaron.utils.UIUtils;
+import com.aaron.toolsaaron.views.PickViewPager;
 import com.aaron.toolsaaron.viewtools.statusbar.Eyes;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
@@ -31,7 +32,7 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-import static com.bumptech.glide.request.target.Target.*;
+import static com.bumptech.glide.request.target.Target.SIZE_ORIGINAL;
 
 /**
  * @des 图片查看
@@ -42,7 +43,7 @@ public class ImageViewPagerActivity extends BaseActivity implements ViewPager.On
     public static final String POSITION = "position";
 
     @Bind(R.id.vp_pics)
-    ViewPager mVpPics;
+    PickViewPager mVpPics;
 
     @Bind(R.id.tv_indicator)
     TextView mTvIndicator;

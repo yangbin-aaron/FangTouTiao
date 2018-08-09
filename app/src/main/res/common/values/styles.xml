@@ -2,8 +2,8 @@
 
     <style name="AppTheme.Slide" parent="@style/AppTheme">
         <!--Required-->
-        <!--窗体背景透明-->
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--窗体背景白色-->
+        <item name="android:windowBackground">@android:color/white</item>
         <item name="android:windowIsTranslucent">true</item>
         <!--窗体进出动画-->
         <item name="android:windowAnimationStyle">@style/AppTheme.Slide.Animation</item>

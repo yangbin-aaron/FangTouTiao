@@ -14,15 +14,13 @@ import android.widget.TextView;
 import com.aaron.fangtoutiao.R;
 import com.aaron.toolsaaron.ui.base.BaseActivity;
 import com.aaron.toolsaaron.ui.base.BasePresenter;
+import com.aaron.toolsaaron.utils.UIUtils;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
 public class WebViewActivity extends BaseActivity {
     public static final String URL = "url";
-
-    @Bind(R.id.iv_back)
-    ImageView mIvBack;
 
     @Bind(R.id.tv_author)
     TextView mTvTitle;
@@ -88,8 +86,15 @@ public class WebViewActivity extends BaseActivity {
         });
     }
 
-    @OnClick(R.id.iv_back)
+    @OnClick({R.id.iv_back, R.id.iv_detail})
     public void onViewClicked(View view) {
-        finish();
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.iv_detail:
+                UIUtils.showToast("更多，敬请期待！");
+                break;
+        }
     }
 }

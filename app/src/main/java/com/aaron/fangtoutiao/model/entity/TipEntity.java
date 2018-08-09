@@ -1,11 +1,5 @@
 package com.aaron.fangtoutiao.model.entity;
 
-/**
- * @author ChayChan
- * @description: TODO
- * @date 2017/7/6  15:31
- */
-
 public class TipEntity {
     /**
      * display_info : 今日头条推荐引擎有15条更新
