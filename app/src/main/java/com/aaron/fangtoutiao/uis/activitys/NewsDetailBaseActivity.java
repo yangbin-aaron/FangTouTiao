@@ -3,6 +3,7 @@ package com.aaron.fangtoutiao.uis.activitys;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -89,6 +90,7 @@ public abstract class NewsDetailBaseActivity extends BaseActivity<NewsDetailPres
         mDetalUrl = intent.getStringExtra(DETAIL_URL);
         mGroupId = intent.getStringExtra(GROUP_ID);
         mItemId = intent.getStringExtra(ITEM_ID);
+        if (TextUtils.isEmpty(mItemId)) mItemId = "null";
         mItemId = mItemId.replace("i", "");
 
         mPresenter.getNewsDetail(mDetalUrl);
@@ -133,7 +135,7 @@ public abstract class NewsDetailBaseActivity extends BaseActivity<NewsDetailPres
 
         mCommentResponse = response;
 
-        if (ListUtils.isEmpty(response.data)){
+        if (ListUtils.isEmpty(response.data)) {
             //没有评论了
             mCommentAdapter.loadMoreEnd();
             return;
@@ -150,7 +152,7 @@ public abstract class NewsDetailBaseActivity extends BaseActivity<NewsDetailPres
 
         if (!response.has_more) {
             mCommentAdapter.loadMoreEnd();
-        }else{
+        } else {
             mCommentAdapter.loadMoreComplete();
         }
     }
@@ -191,14 +193,14 @@ public abstract class NewsDetailBaseActivity extends BaseActivity<NewsDetailPres
 
 
     /**
-     *  发送事件，用于更新上个页面的播放进度以及评论数
+     * 发送事件，用于更新上个页面的播放进度以及评论数
      */
     protected void postVideoEvent(boolean isVideoDetail) {
         DetailCloseEvent event = new DetailCloseEvent();
         event.setChannelCode(mChannelCode);
         event.setPosition(mPosition);
 
-        if (mCommentResponse != null){
+        if (mCommentResponse != null) {
             event.setCommentCount(mCommentResponse.total_number);
         }
 

@@ -9,9 +9,7 @@ import com.aaron.toolsaaron.recyclerview.BaseViewHolder;
 import com.aaron.toolsaaron.utils.GlideUtils;
 
 /**
- * @author ChayChan
  * @description: 三张图片布局(文章、广告)
- * @date 2018/3/22  14:36
  */
 public class ThreePicNewsItemProvider extends BaseNewsItemProvider {
 

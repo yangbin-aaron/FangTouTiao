@@ -33,4 +33,5 @@
     <color name="color_1affffff">#1affffff</color>
     <color name="color_E6E8E7">#E6E8E7</color>
     <color name="selector_grey">#DDDDDD</color>
+    <color name="placeholder_color">#1A000000</color>
 </resources>

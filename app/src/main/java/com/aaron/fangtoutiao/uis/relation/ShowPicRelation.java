@@ -1,8 +1,10 @@
 package com.aaron.fangtoutiao.uis.relation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.webkit.JavascriptInterface;
 
+import com.aaron.fangtoutiao.uis.activitys.ImageViewPagerActivity;
 import com.aaron.toolsaaron.utils.LogUtil;
 
 import java.util.ArrayList;
@@ -19,20 +21,24 @@ public class ShowPicRelation {
         this.mContext = context;
     }
 
-    /**JS中点击图片执行的Java代码*/
+    /**
+     * JS中点击图片执行的Java代码
+     */
     @JavascriptInterface
-    public void openImg(String url){
+    public void openImg(String url) {
         //传到展示图片的viewPager
-//        Intent intent = new Intent(mContext, ImageViewPagerActivity.class);
-//        intent.putExtra(ImageViewPagerActivity.POSITION,mUrls.indexOf(url));
-//        intent.putStringArrayListExtra(ImageViewPagerActivity.IMG_URLS, (ArrayList<String>) mUrls);
-//        mContext.startActivity(intent);
+        Intent intent = new Intent(mContext, ImageViewPagerActivity.class);
+        intent.putExtra(ImageViewPagerActivity.POSITION, mUrls.indexOf(url));
+        intent.putStringArrayListExtra(ImageViewPagerActivity.IMG_URLS, (ArrayList<String>) mUrls);
+        mContext.startActivity(intent);
     }
 
-    /**页面加载时JS调用的Java代码*/
+    /**
+     * 页面加载时JS调用的Java代码
+     */
     @JavascriptInterface
-    public void getImgArray(String urlArray){
-        LogUtil.i(TAG,urlArray);
+    public void getImgArray(String urlArray) {
+        LogUtil.i(TAG, urlArray);
         String[] urls = urlArray.split(";");//url拼接成的字符串，有分号隔开
         for (String url : urls) {
             mUrls.add(url);

@@ -10,9 +10,7 @@ import com.aaron.toolsaaron.utils.GlideUtils;
 import com.aaron.toolsaaron.utils.TimeUtils;
 
 /**
- * @author ChayChan
  * @description: 右侧小图布局(1.小图新闻；2.视频类型，右下角显示视频时长)
- * @date 2018/3/22  14:36
  */
 public class RightPicNewsItemProvider extends BaseNewsItemProvider {
 

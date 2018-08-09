@@ -11,9 +11,7 @@ import com.aaron.toolsaaron.utils.TimeUtils;
 import com.aaron.toolsaaron.utils.UIUtils;
 
 /**
- * @author ChayChan
  * @description: 将新闻中设置数据公共部分抽取
- * @date 2018/3/22  14:48
  */
 
 public abstract class BaseNewsItemProvider extends BaseItemProvider<News,BaseViewHolder> {

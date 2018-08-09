@@ -55,7 +55,7 @@ public class WebViewActivity extends BaseActivity {
         settings.setJavaScriptEnabled(true);
 
 
-        mWvContent.setWebViewClient(new WebViewClient(){
+        mWvContent.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 mPbLoading.setVisibility(View.VISIBLE);
@@ -67,7 +67,7 @@ public class WebViewActivity extends BaseActivity {
             }
         });
 
-        mWvContent.setWebChromeClient(new WebChromeClient(){
+        mWvContent.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 mPbLoading.setProgress(newProgress);
@@ -89,7 +89,7 @@ public class WebViewActivity extends BaseActivity {
     }
 
     @OnClick(R.id.iv_back)
-    public void onViewClicked() {
+    public void onViewClicked(View view) {
         finish();
     }
 }

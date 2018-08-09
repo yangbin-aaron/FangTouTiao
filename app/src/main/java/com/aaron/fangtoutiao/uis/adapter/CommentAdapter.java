@@ -3,6 +3,7 @@ package com.aaron.fangtoutiao.uis.adapter;
 import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.aaron.fangtoutiao.R;
@@ -11,6 +12,7 @@ import com.aaron.toolsaaron.recyclerview.BaseQuickAdapter;
 import com.aaron.toolsaaron.recyclerview.BaseViewHolder;
 import com.aaron.toolsaaron.utils.GlideUtils;
 import com.aaron.toolsaaron.utils.TimeUtils;
+import com.aaron.toolsaaron.utils.UIUtils;
 
 import java.util.List;
 
@@ -36,5 +38,12 @@ public class CommentAdapter extends BaseQuickAdapter<CommentData, BaseViewHolder
                 .setText(R.id.tv_like_count, String.valueOf(commentData.comment.digg_count))
                 .setText(R.id.tv_content, commentData.comment.text)
                 .setText(R.id.tv_time, TimeUtils.getShortTime(commentData.comment.create_time * 1000));
+
+        helper.getView(R.id.tv_like_count).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIUtils.showToast("点赞，敬请期待！");
+            }
+        });
     }
 }

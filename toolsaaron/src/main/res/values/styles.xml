@@ -6,10 +6,6 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    </style>
-
-    <!--没有actionbar的Theme-->
-    <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowNoTitle">?android:windowNoTitle</item>
     </style>
 

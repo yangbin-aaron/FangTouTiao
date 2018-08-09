@@ -23,6 +23,7 @@
         >
 
         <TextView
+            android:id="@+id/tv_edit_comment"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_gravity="center"
@@ -83,6 +84,7 @@
         </FrameLayout>
 
         <ImageView
+            android:id="@+id/iv_save"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -92,6 +94,7 @@
             android:src="@drawable/new_love_tabbar"/>
 
         <ImageView
+            android:id="@+id/iv_shape"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"

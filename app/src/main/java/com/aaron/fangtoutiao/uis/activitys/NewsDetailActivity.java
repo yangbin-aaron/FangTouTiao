@@ -12,13 +12,12 @@ import com.aaron.fangtoutiao.model.entity.NewsDetail;
 import com.aaron.fangtoutiao.uis.view.NewsDetailHeaderView;
 import com.aaron.toolsaaron.utils.GlideUtils;
 import com.aaron.toolsaaron.utils.LogUtil;
+import com.aaron.toolsaaron.utils.UIUtils;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
 public class NewsDetailActivity extends NewsDetailBaseActivity {
-    @Bind(R.id.iv_back)
-    ImageView mIvBack;
 
     @Bind(R.id.ll_user)
     LinearLayout mLlUser;
@@ -28,7 +27,6 @@ public class NewsDetailActivity extends NewsDetailBaseActivity {
 
     @Bind(R.id.tv_author)
     TextView mTvAuthor;
-
 
     @Override
     protected int getViewContentViewId() {
@@ -69,8 +67,8 @@ public class NewsDetailActivity extends NewsDetailBaseActivity {
 
         mLlUser.setVisibility(View.GONE);
 
-        if (newsDetail.media_user != null){
-            GlideUtils.loadRound(this,newsDetail.media_user.avatar_url, mIvAvatar);
+        if (newsDetail.media_user != null) {
+            GlideUtils.loadRound(this, newsDetail.media_user.avatar_url, mIvAvatar);
             mTvAuthor.setText(newsDetail.media_user.screen_name);
         }
     }
@@ -80,8 +78,25 @@ public class NewsDetailActivity extends NewsDetailBaseActivity {
         postVideoEvent(false);
     }
 
-    @OnClick(R.id.iv_back)
-    public void onViewClicked() {
-        postVideoEvent(false);
+    @OnClick({R.id.iv_back, R.id.iv_detail, R.id.tv_edit_comment, R.id.iv_save, R.id.iv_shape})
+    public void onViewClicked(View view) {
+        super.onViewClicked(view);
+        switch (view.getId()) {
+            case R.id.iv_back:
+                postVideoEvent(false);
+                break;
+            case R.id.iv_detail:
+                UIUtils.showToast("更多，敬请期待！");
+                break;
+            case R.id.tv_edit_comment:
+                UIUtils.showToast("评论，敬请期待！");
+                break;
+            case R.id.iv_save:
+                UIUtils.showToast("收藏，敬请期待！");
+                break;
+            case R.id.iv_shape:
+                UIUtils.showToast("转发，敬请期待！");
+                break;
+        }
     }
 }

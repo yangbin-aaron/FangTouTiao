@@ -46,4 +46,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:4.0.0'
     // ???
     compile 'io.reactivex:rxandroid:1.2.0'
+    // 图片预览使用
+    compile 'com.github.chrisbanes:PhotoView:2.0.0'
+    compile 'com.sunfusheng:glideimageview:1.0.0'
 }

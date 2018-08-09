@@ -12,9 +12,7 @@ import com.aaron.toolsaaron.utils.TimeUtils;
 import com.aaron.toolsaaron.utils.UIUtils;
 
 /**
- * @author ChayChan
  * @description: 居中大图布局(1.单图文章；2.单图广告；3.视频，中间显示播放图标，右侧显示时长)
- * @date 2018/3/22  14:36
  */
 public class CenterPicNewsItemProvider extends BaseNewsItemProvider {
 
